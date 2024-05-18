@@ -27,12 +27,11 @@ const Body = () =>
       array.splice(index, 1)
       setNumberOfFields(array)
     }
-    else if (array.length !== 1)
+    else
     {
       array.splice(index, 1)
       setNumberOfFields(array)
     }
-    else {}
     var array_fieldvalues = [...fieldValues]
     if (array_fieldvalues.length !== 1)
     {
