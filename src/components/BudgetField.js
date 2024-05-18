@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BudgetField = ({ valueID, fieldValues, setFieldValues }) =>
+const BudgetField = ({ valueID, numberOfFields, fieldValues, setFieldValues }) =>
 {
   const subtractAsset = (assetValue) =>
   {
@@ -18,13 +18,15 @@ const BudgetField = ({ valueID, fieldValues, setFieldValues }) =>
         return
     }
     var array = [...fieldValues]
+    var index = numberOfFields.indexOf(valueID)
+    console.log('valueID: ' + valueID)
     if (array.length === 0)
     {
       setFieldValues([assetValue])
     }
     else
     {
-      array.splice(valueID - 1, 1, assetValue)
+      array.splice(index, 1, assetValue)
       setFieldValues(array)
     }
   }

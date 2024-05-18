@@ -10,21 +10,33 @@ const Body = () =>
   const [fieldValues, setFieldValues] = useState([])
   const [balanceTotal, setBalanceTotal] = useState(0)
 
+  const addField = () => 
+  {
+    setNumberOfFields([...numberOfFields, numberOfFields[numberOfFields.length - 1] + 1])
+    setFieldValues([...fieldValues, 0])
+  }
+
   const removeField = (field) =>
   {
     console.log('field to rem: ' + field)
     var index = numberOfFields.indexOf(field)
     console.log('index: ' + index)
     var array = [...numberOfFields]
-    if (array.length !== 1)
+    if (index === array.length - 1)
     {
       array.splice(index, 1)
       setNumberOfFields(array)
     }
+    else if (array.length !== 1)
+    {
+      array.splice(index, 1)
+      setNumberOfFields(array)
+    }
+    else {}
     var array_fieldvalues = [...fieldValues]
     if (array_fieldvalues.length !== 1)
     {
-      array_fieldvalues.splice(field - 1, 1)
+      array_fieldvalues.splice(index, 1)
       setFieldValues(array_fieldvalues)
     }
   }
@@ -36,6 +48,7 @@ const Body = () =>
       return <div key={'key_'+field} className='w-11/12'>
               <BudgetField 
                 valueID = { field }
+                numberOfFields = { numberOfFields }
                 fieldValues = { fieldValues }
                 setFieldValues = { setFieldValues }
               />
@@ -46,6 +59,7 @@ const Body = () =>
       return <div key={'key_'+field} className='w-11/12'>
                 <BudgetField 
                   valueID = { field }
+                  numberOfFields = { numberOfFields }
                   fieldValues = { fieldValues }
                   setFieldValues = { setFieldValues }
                 />
@@ -100,7 +114,7 @@ const Body = () =>
           <div className='flex'>
             <button
                 className='bg-white w-16 h-8 border border-black'
-                onClick={ () => setNumberOfFields([...numberOfFields, numberOfFields[numberOfFields.length - 1] + 1]) }
+                onClick={ () => addField() }
             >Add
             </button>
           </div>
