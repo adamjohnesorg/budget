@@ -4,7 +4,6 @@ const BudgetField = ({ valueID, numberOfFields, fieldValues, setFieldValues }) =
 {
   const subtractAsset = (assetValue) =>
   {
-    console.log(assetValue)
     try
     {
         if (isNaN(assetValue))
@@ -19,7 +18,6 @@ const BudgetField = ({ valueID, numberOfFields, fieldValues, setFieldValues }) =
     }
     var array = [...fieldValues]
     var index = numberOfFields.indexOf(valueID)
-    console.log('valueID: ' + valueID)
     if (array.length === 0)
     {
       setFieldValues([assetValue])

@@ -18,9 +18,7 @@ const Body = () =>
 
   const removeField = (field) =>
   {
-    console.log('field to rem: ' + field)
     var index = numberOfFields.indexOf(field)
-    console.log('index: ' + index)
     var array = [...numberOfFields]
     if (index === array.length - 1)
     {
@@ -84,11 +82,6 @@ const Body = () =>
     }
     subtractFields()
   }, [fieldValues, totalBudgetOverall, numberOfFields])
-
-  console.log(numberOfFields)
-  console.log("Budget Overall: " + totalBudgetOverall)
-  console.log("Field values: " + fieldValues)
-  console.log("Balance Total: " + balanceTotal)
 
   return (
     <div className='flex flex-col border border-black'>
