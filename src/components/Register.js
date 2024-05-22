@@ -25,7 +25,6 @@ const Register = () =>
     const [errMsg, setErrMsg] = useState('')
     const [success, setSuccess] = useState(false)
 
-    /* 
     useEffect(() => {
         userRef.current.focus()
     }, [])
@@ -36,12 +35,57 @@ const Register = () =>
         console.log(user)
         setValidName(result)
     }, [user])
-    */
+
+    useEffect(() => {
+        const result = PWD_REGEX.test(pwd)
+        console.log(result)
+        console.log(pwd)
+        const match = pwd === matchPwd
+        setValidMatchPwd(match)
+    }, [pwd, matchPwd])
+
+    useEffect(() => {
+        setErrMsg('')
+    }, [user, pwd, matchPwd])
 
     return (
-        <div>
-            
-        </div>
+        <section>
+            <p ref={ errRef }
+               className={ errMsg ? "errmsg" : "offscreen" }
+               aria-live='assertive'>{ errMsg }
+            </p>
+            <h1>Register</h1>
+            <form>
+                <label htmlFor='username'>
+                    Username:
+                    <span className={ validName ? 'valid' : 'hide'}>
+                        <FontAwesomeIcon icon={ faCheck } />
+                    </span>
+                    <span className={ validName || !user ? 'hide' : 'invalid'}>
+                        <FontAwesomeIcon icon={ faTimes } />
+                    </span>
+                </label>
+                <input
+                    type='text'
+                    id='username'
+                    ref={ userRef }
+                    autoComplete='off'
+                    onChange={(e) => setUser(e.target.value)}
+                    required
+                    aria-invalid={validName ? 'false' : 'true'}
+                    aria-describedby='uidnote'
+                    onFocus={() => setUserFocus(true)}
+                    onBlur={() => setUserFocus(false)}
+                />
+                <p id='uidnote'
+                    className={ userFocus && user && !validName ? 'instructions' : 'offscreen' }>
+                    <FontAwesomeIcon icon={ faInfoCircle } />
+                    4 to 24 characters.<br/>
+                    Must begin with a letter.<br/>
+                    Letters, numbers, underscores and hyphens are allowed.
+                </p>
+            </form>
+        </section>
     )
 }
 
