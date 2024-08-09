@@ -30,15 +30,18 @@ const BudgetField = ({ valueID, numberOfFields, fieldValues, setFieldValues }) =
   }
 
   return (
-    <div className='flex items-center justify-evenly border border-green-500 h-20'>
+    <div className='flex items-center justify-evenly border border-green-500'>
+        <input
+            id={'fieldName_' + valueID}
+            type='text'
+            placeholder='default'>
+        </input>
         <input
             id={'fieldID_' + valueID}
             className='h-4/6 text-center'
             type='text'
-            onChange={ () => subtractAsset(+document.getElementById('fieldID_' +  valueID ).value)}
-        >
+            onChange={ () => subtractAsset(+document.getElementById('fieldID_' +  valueID ).value)}>
         </input>
-        <p></p>
     </div>
   )
 }

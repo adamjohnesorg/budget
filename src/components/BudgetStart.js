@@ -20,10 +20,10 @@ const BudgetStart = ({ totalBudgetOverall, setTotalBudgetOverall }) =>
   } 
 
   return (
-    <div>
+    <div className='sm:w-9/12'>
       <input
           id='budgetID'
-          className='h-4/6 text-center'
+          className='h-full text-center w-full'
           type='text'
           onChange={() => beginBudget(+document.getElementById('budgetID').value)}
       >
